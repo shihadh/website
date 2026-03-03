@@ -1,0 +1,109 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shihad_portfolio/core/responsive.dart';
+import 'package:shihad_portfolio/core/constants/link_constants.dart';
+import 'package:shihad_portfolio/core/constants/text_constants.dart';
+import 'package:shihad_portfolio/core/utils/url_launcher_utils.dart';
+import 'package:shihad_portfolio/showcase/project_card.dart';
+import 'package:shihad_portfolio/demo/demo_provider.dart';
+
+class ShowcaseSection extends StatelessWidget {
+  const ShowcaseSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final demoProvider = context.read<DemoProvider>();
+
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: ResponsiveLayout.isMobile(context) ? 24 : 100,
+        vertical: 100,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            AppText.showcaseTitle,
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+          const SizedBox(height: 16),
+          Text(
+            AppText.showcaseSubtitle,
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          const SizedBox(height: 60),
+          _buildProjectGrid(context, demoProvider),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildProjectGrid(BuildContext context, DemoProvider demoProvider) {
+    final projects = [
+      ProjectCard(
+        title: AppText.finoteTitle,
+        description: AppText.finoteDesc,
+        tags: const ['Flutter', 'Firebase', 'AI-Integration', 'Provider'],
+        isFeatured: true,
+        onDemoPressed: () => demoProvider.openDemo(DemoType.finote),
+        onGithubPressed: () {
+          UrlLauncherUtils.launchURL(AppLinks.finoteGithub);
+        },
+      ),
+      ProjectCard(
+        title: AppText.carRentalTitle,
+        description: AppText.carRentalDesc,
+        tags: const ['Flutter', 'Clean Architecture', 'Provider'],
+        onDemoPressed: () => demoProvider.openDemo(DemoType.carRental),
+        onGithubPressed: () {
+          UrlLauncherUtils.launchURL(AppLinks.carRentalGithub);
+        },
+      ),
+      ProjectCard(
+        title: AppText.gameVerseProjectTitle,
+        description: AppText.gameVerseDesc,
+        tags: const ['Flutter', 'REST API', 'GameDB', 'Provider'],
+        onDemoPressed: () => demoProvider.openDemo(DemoType.gameVerse),
+        onGithubPressed: () {
+          UrlLauncherUtils.launchURL(AppLinks.gameVerseGithub);
+        },
+      ),
+      ProjectCard(
+        title: AppText.icmsTitle,
+        description: AppText.icmsDesc,
+        tags: const ['Flutter', 'Enterprise', 'REST API', 'Provider'],
+        isPrivate: true,
+        onDemoPressed: () {},
+        onGithubPressed: () {
+          UrlLauncherUtils.launchURL(AppLinks.icmsGithub);
+        },
+      ),
+    ];
+
+    if (ResponsiveLayout.isMobile(context)) {
+      return Column(
+        children: projects
+            .map(
+              (p) => Padding(
+                padding: const EdgeInsets.only(bottom: 24),
+                child: SizedBox(height: 400, child: p),
+              ),
+            )
+            .toList(),
+      );
+    }
+
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 32,
+        mainAxisSpacing: 32,
+        mainAxisExtent: 450,
+      ),
+      itemCount: projects.length,
+      itemBuilder: (context, index) => projects[index],
+    );
+  }
+}

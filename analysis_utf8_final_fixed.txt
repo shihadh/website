@@ -1,0 +1,7 @@
+﻿Analyzing portfolio...                                          
+
+   info - 'scale' is deprecated and shouldn't be used. Use scaleByVector3, scaleByVector4, or scaleByDouble instead - lib\core\widgets\phone_modal.dart:56:23 - deprecated_member_use
+   info - 'scale' is deprecated and shouldn't be used. Use scaleByVector3, scaleByVector4, or scaleByDouble instead - lib\portfolio\contact_section.dart:109:40 - deprecated_member_use
+   info - 'scale' is deprecated and shouldn't be used. Use scaleByVector3, scaleByVector4, or scaleByDouble instead - lib\portfolio\contact_section.dart:163:40 - deprecated_member_use
+warning - The value of the local variable 'scrollObj' isn't used - lib\portfolio\hero_section.dart:250:15 - unused_local_variable
+
