@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shihad_portfolio/core/theme/app_theme.dart';
-import 'package:shihad_portfolio/portfolio/portfolio_controller.dart';
-import 'package:shihad_portfolio/portfolio/hero_controller.dart' as hc;
+import 'package:shihad_portfolio/portfolio/controller/portfolio_controller.dart';
+import 'package:shihad_portfolio/portfolio/controller/hero_controller.dart'
+    as hc;
 import 'package:shihad_portfolio/demo/car_rental/controller/car_rental_provider.dart';
 import 'package:shihad_portfolio/demo/finote/controller/finote_provider.dart';
-import 'package:shihad_portfolio/portfolio/home_view.dart';
+import 'package:shihad_portfolio/portfolio/controller/skills_controller.dart';
+import 'package:shihad_portfolio/portfolio/view/home_view.dart';
 import 'package:shihad_portfolio/demo/demo_provider.dart';
 
 void main() {
@@ -17,6 +19,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => CarRentalProvider()),
         ChangeNotifierProvider(create: (_) => FinoteProvider()),
         ChangeNotifierProvider(create: (_) => DemoProvider()),
+        ChangeNotifierProvider(create: (_) => SkillsController()),
       ],
       child: const PortfolioApp(),
     ),

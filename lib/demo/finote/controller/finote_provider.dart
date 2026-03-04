@@ -25,6 +25,39 @@ class FinoteProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Transaction Form State
+  final TextEditingController amountController = TextEditingController();
+  final TextEditingController noteController = TextEditingController();
+  String _selectedCategory = 'Select category';
+  String get selectedCategory => _selectedCategory;
+  bool _isIncome = true;
+  bool get isIncome => _isIncome;
+
+  void setCategory(String category) {
+    _selectedCategory = category;
+    notifyListeners();
+  }
+
+  void setIncome(bool value) {
+    _isIncome = value;
+    notifyListeners();
+  }
+
+  void clearForm() {
+    amountController.clear();
+    noteController.clear();
+    _selectedCategory = 'Select category';
+    _isIncome = true;
+    notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    amountController.dispose();
+    noteController.dispose();
+    super.dispose();
+  }
+
   // Adapted Finote Data
   final Map<String, dynamic> finoteData = {
     'balance': 12450,

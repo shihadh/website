@@ -7,14 +7,30 @@ class AppText {
   static const String heroCreatedForYou = 'Developer for you.';
 
   // Side Info Cards
-  static const String sideCardPreOrdersTitle = 'MOHAMMED SHIHAD';
+  static const String sideCardPreOrdersTitle = 'MOHAMMED SHIHAD K';
   static const String sideCardPreOrdersDesc =
-      'Hands-on experience building scalable, performance-focused mobile applications using Flutter, Firebase, Supabase and API and AI integration.';
-  static const String sideCardExclusiveTitle = 'THIS MONTH\'S EXCLUSIVE';
+      'I build scalable Flutter applications using modern architecture patterns and AI-powered integrations.';
+  static const String sideCardExclusiveTitle = 'How I Work';
   static const String sideCardExclusiveDesc =
-      'Join the architecture-driven movement and unlock premium cross-platform systems.';
+      'Clean and maintainable\nScalable state management\nPerformance-focused UI\nModular code structure';
   static const String sideCardWatchPreview = 'WATCH PREVIEW';
   static const String heroPhoneLabel = 'FLUTTER';
+
+  // Skills Section
+  static const String skillsTitle = 'Technical Skills';
+  static const String mobileDevTitle = 'Mobile Development';
+  static const String mobileDevSkills = 'Flutter, Dart, Responsive UI';
+  static const String backendTitle = 'Backend & Authentication';
+  static const String backendSkills = 'Firebase, Supabase, REST APIs';
+  static const String architectureTitle = 'State Management & Architecture';
+  static const String architectureSkills =
+      'Provider, Clean modular structure, Scalable folder architecture';
+  static const String aiTitle = 'AI & Advanced Features';
+  static const String aiSkills =
+      'Google ML Kit (OCR integration), OpenAI API (Ai chat assistant)';
+  static const String toolsTitle = 'Tools & Workflow';
+  static const String toolsSkills =
+      'Git & GitHub, Postman, VS Code & Android Studio, Debugging & Performance optimization';
 
   // Navigation Labels
   static const String navHome = 'Home';
@@ -39,7 +55,7 @@ class AppText {
   // Showcase Section
   static const String showcaseTitle = 'Selected Projects';
   static const String showcaseSubtitle =
-      'A curation of high-performance applications built with scalability and UX in mind.';
+      'high-performance applications built with scalability and UX in mind.';
 
   // Project Card
   static const String projectFeaturedLabel = 'Featured Project';

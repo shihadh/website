@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shihad_portfolio/portfolio/hero_controller.dart' as hc;
+import 'package:shihad_portfolio/core/responsive.dart';
+import 'package:shihad_portfolio/portfolio/controller/hero_controller.dart'
+    as hc;
 import 'package:shihad_portfolio/core/theme/app_theme.dart';
 import 'package:shihad_portfolio/core/widgets/phone_frame.dart';
 import 'package:shihad_portfolio/core/constants/text_constants.dart';
@@ -24,8 +26,9 @@ class _HeroSectionState extends State<HeroSection> {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = ResponsiveLayout.isMobile(context);
     return Container(
-      height: 800,
+      height: isMobile ? 650 : 800,
       width: double.infinity,
       color: AppTheme.background,
       child: Stack(
@@ -34,37 +37,43 @@ class _HeroSectionState extends State<HeroSection> {
           const Positioned.fill(child: _RadialBackgroundGlow()),
 
           // Massive Background Text: FLUTTER ENGINEER
-          const Positioned.fill(child: _BackgroundText()),
+          const Positioned.fill(
+            child: RepaintBoundary(child: _BackgroundText()),
+          ),
 
           // Centerpiece: PhoneFrame (Floating)
           const Center(child: _PhoneCenterpiece()),
 
           // Typography Overlays: Split Layout
-          const Positioned(
+          Positioned(
             left: 0,
             right: 0,
-            top: 80,
-            child: _TypographyOverlay(),
+            top: isMobile ? 40 : 80,
+            child: const RepaintBoundary(child: _TypographyOverlay()),
           ),
 
           // Sidebar Info: Bottom Left Area
-          const Positioned(
-            bottom: 90,
-            left: 80,
-            child: _SideInfoCard(
-              title: AppText.sideCardPreOrdersTitle,
-              description: AppText.sideCardPreOrdersDesc,
+          Positioned(
+            bottom: isMobile ? 20 : 90,
+            left: isMobile ? 20 : 80,
+            child: const RepaintBoundary(
+              child: _SideInfoCard(
+                title: AppText.sideCardPreOrdersTitle,
+                description: AppText.sideCardPreOrdersDesc,
+              ),
             ),
           ),
 
           // Sidebar Info: Bottom Right Area
-          const Positioned(
-            bottom: 90,
-            right: 80,
-            child: _SideInfoCard(
-              title: AppText.sideCardExclusiveTitle,
-              description: AppText.sideCardExclusiveDesc,
-              isProjectLink: true,
+          Positioned(
+            bottom: isMobile ? 20 : 90,
+            right: isMobile ? 20 : 80,
+            child: const RepaintBoundary(
+              child: _SideInfoCard(
+                title: AppText.sideCardExclusiveTitle,
+                description: AppText.sideCardExclusiveDesc,
+                isProjectLink: true,
+              ),
             ),
           ),
         ],
@@ -78,12 +87,17 @@ class _RadialBackgroundGlow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: RadialGradient(
-          center: const Alignment(0, 0),
-          radius: 0.8,
-          colors: [AppTheme.accent.withValues(alpha: 0.06), Colors.transparent],
+    return RepaintBoundary(
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: RadialGradient(
+            center: const Alignment(0, 0),
+            radius: 0.8,
+            colors: [
+              AppTheme.accent.withValues(alpha: 0.06),
+              Colors.transparent,
+            ],
+          ),
         ),
       ),
     );
@@ -95,29 +109,30 @@ class _BackgroundText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = ResponsiveLayout.isMobile(context);
+    final textStyle = GoogleFonts.bebasNeue(
+      fontSize: isMobile ? 140 : 260,
+      fontWeight: FontWeight.w900,
+      letterSpacing: isMobile ? 4 : 2,
+      color: Colors.white,
+      height: 0.8,
+    );
+
     return Selector<hc.HeroController, bool>(
       selector: (context, controller) => controller.isLoaded,
       builder: (context, isLoaded, child) {
-        final textStyle = GoogleFonts.bebasNeue(
-          fontSize: 260,
-          fontWeight: FontWeight.w900,
-          letterSpacing: 2,
-          color: Colors.white,
-          height: 0.8,
-        );
-
         return Stack(
           alignment: Alignment.center,
           children: [
             // "FLUTTER" - Sliding from Left
             AnimatedPositioned(
-              duration: const Duration(milliseconds: 3000),
+              duration: const Duration(milliseconds: 2000),
               curve: Curves.easeOutExpo,
               left: isLoaded ? 0 : -400,
               right: isLoaded ? 0 : 400,
-              top: 200,
+              top: isMobile ? 180 : 200,
               child: AnimatedOpacity(
-                duration: const Duration(milliseconds: 2000),
+                duration: const Duration(milliseconds: 1500),
                 opacity: isLoaded ? 0.04 : 0.0,
                 child: Text(
                   "FLUTTER",
@@ -128,13 +143,13 @@ class _BackgroundText extends StatelessWidget {
             ),
             // "ENGINEER" - Sliding from Right
             AnimatedPositioned(
-              duration: const Duration(milliseconds: 3000),
+              duration: const Duration(milliseconds: 2000),
               curve: Curves.easeOutExpo,
               left: isLoaded ? 0 : 400,
               right: isLoaded ? 0 : -400,
-              bottom: 200,
+              bottom: isMobile ? 180 : 200,
               child: AnimatedOpacity(
-                duration: const Duration(milliseconds: 2000),
+                duration: const Duration(milliseconds: 1500),
                 opacity: isLoaded ? 0.04 : 0.0,
                 child: Text(
                   "ENGINEER",
@@ -155,35 +170,45 @@ class _TypographyOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = ResponsiveLayout.isMobile(context);
+
+    // Cache styles outside of Selector
+    final titleStyle = GoogleFonts.kaushanScript(
+      color: AppTheme.accent,
+      fontSize: isMobile ? 60 : 110,
+      fontWeight: FontWeight.w400,
+    );
+
+    final subtitleStyle = GoogleFonts.rockSalt(
+      color: Colors.white,
+      fontSize: isMobile ? 12 : 24,
+      letterSpacing: 2,
+    );
+
     return Selector<hc.HeroController, bool>(
       selector: (context, controller) => controller.isLoaded,
       builder: (context, isLoaded, child) {
-        return Row(
+        return Flex(
+          direction: isMobile ? Axis.vertical : Axis.horizontal,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Left Side Content
             Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: isMobile
+                  ? CrossAxisAlignment.center
+                  : CrossAxisAlignment.end,
               children: [
                 _AnimatedTypographyUnit(
                   text: AppText.heroTitleModern,
-                  style: GoogleFonts.kaushanScript(
-                    color: AppTheme.accent,
-                    fontSize: 110,
-                    fontWeight: FontWeight.w400,
-                  ),
+                  style: titleStyle,
                   delay: 200,
                   isLoaded: isLoaded,
                 ),
-                const SizedBox(height: 10),
+                if (!isMobile) const SizedBox(height: 10),
                 _AnimatedTypographyUnit(
                   text: AppText.heroCreatedForYou,
-                  style: GoogleFonts.rockSalt(
-                    color: Colors.white,
-                    fontSize: 24,
-                    letterSpacing: 2,
-                  ),
+                  style: subtitleStyle,
                   delay: 800,
                   isLoaded: isLoaded,
                 ),
@@ -191,16 +216,12 @@ class _TypographyOverlay extends StatelessWidget {
             ),
 
             // Large Gap for the Phone Centerpiece
-            const SizedBox(width: 380),
+            SizedBox(width: isMobile ? 0 : 380, height: isMobile ? 320 : 0),
 
             // Right Side Content
             _AnimatedTypographyUnit(
               text: AppText.heroTitleArchitect,
-              style: GoogleFonts.kaushanScript(
-                color: AppTheme.accent,
-                fontSize: 110,
-                fontWeight: FontWeight.w400,
-              ),
+              style: titleStyle,
               delay: 400,
               isLoaded: isLoaded,
             ),
@@ -244,41 +265,37 @@ class _PhoneCenterpiece extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<hc.HeroController>(
-      builder: (context, controller, child) {
-        final isLoaded = controller.isLoaded;
-        // final scrollObj = controller.scrollProgress;
-
-        return AnimatedContainer(
-          duration: const Duration(milliseconds: 2000),
-          curve: Curves.easeOutExpo,
-          child: AnimatedOpacity(
-            opacity: isLoaded ? 1.0 : 0.0,
-            duration: const Duration(milliseconds: 1500),
-            child: RepaintBoundary(
-              child: PhoneFrame(
-                screen: Container(
-                  color: const Color(0xFF111111),
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.flutter_dash_outlined,
-                          color: AppTheme.accent,
-                          size: 70,
+    return Selector<hc.HeroController, bool>(
+      selector: (context, controller) => controller.isLoaded,
+      builder: (context, isLoaded, child) {
+        return AnimatedOpacity(
+          opacity: isLoaded ? 1.0 : 0.0,
+          duration: const Duration(milliseconds: 1500),
+          // Stagger the phone entry slightly after the first typography unit
+          curve: const Interval(0.4, 1.0, curve: Curves.easeOutExpo),
+          child: RepaintBoundary(
+            child: PhoneFrame(
+              screen: Container(
+                color: const Color(0xFF111111),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.flutter_dash_outlined,
+                        color: AppTheme.accent,
+                        size: 70,
+                      ),
+                      const SizedBox(height: 15),
+                      Text(
+                        AppText.heroPhoneLabel,
+                        style: GoogleFonts.bebasNeue(
+                          color: Colors.white,
+                          fontSize: 28,
+                          letterSpacing: 6,
                         ),
-                        const SizedBox(height: 15),
-                        Text(
-                          AppText.heroPhoneLabel,
-                          style: GoogleFonts.bebasNeue(
-                            color: Colors.white,
-                            fontSize: 28,
-                            letterSpacing: 6,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -303,17 +320,34 @@ class _SideInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = ResponsiveLayout.isMobile(context);
+
+    // Cache styles
+    final titleStyle = GoogleFonts.bebasNeue(
+      color: Colors.white,
+      fontSize: isMobile ? 16 : 22,
+      letterSpacing: 2,
+    );
+
+    final descStyle = GoogleFonts.inter(
+      color: Colors.white.withValues(alpha: 0.4),
+      fontSize: 12,
+      height: 1.6,
+    );
+
     return Selector<hc.HeroController, bool>(
       selector: (context, controller) => controller.isLoaded,
       builder: (context, isLoaded, child) {
         return AnimatedOpacity(
           opacity: isLoaded ? 1.0 : 0.0,
           duration: const Duration(milliseconds: 2500),
+          // Stagger the info cards to appear later
+          curve: const Interval(0.6, 1.0, curve: Curves.easeOutExpo),
           child: Container(
-            width: 260,
-            padding: const EdgeInsets.all(24),
+            width: isMobile ? 160 : 260,
+            padding: EdgeInsets.all(isMobile ? 12 : 24),
             decoration: BoxDecoration(
-              color: const Color(0xFF1A1A1A).withValues(alpha: 0.4),
+              color: Color(0xFF1A1A1A).withValues(alpha: 0.4),
               borderRadius: BorderRadius.circular(16),
               border: Border.all(
                 color: Colors.white.withValues(alpha: 0.08),
@@ -323,23 +357,9 @@ class _SideInfoCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: GoogleFonts.bebasNeue(
-                    color: Colors.white,
-                    fontSize: 22,
-                    letterSpacing: 2,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  description,
-                  style: GoogleFonts.inter(
-                    color: Colors.white.withValues(alpha: 0.4),
-                    fontSize: 12,
-                    height: 1.6,
-                  ),
-                ),
+                Text(title, style: titleStyle),
+                SizedBox(height: isMobile ? 4 : 10),
+                Text(description, style: descStyle),
                 if (isProjectLink) ...[
                   const SizedBox(height: 24),
                   Row(

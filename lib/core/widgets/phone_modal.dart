@@ -54,7 +54,12 @@ class PhoneModal extends StatelessWidget {
                   transform: Matrix4.identity()
                     ..scaleByDouble(value, value, 1.0, 1.0)
                     ..setEntry(3, 2, 0.001)
-                    ..scale(0.7 + (0.3 * value))
+                    ..scaleByDouble(
+                      0.7 + (0.3 * value),
+                      0.7 + (0.3 * value),
+                      1.0,
+                      1.0,
+                    )
                     ..rotateY(0.4 * (1 - value)),
                   child: PhoneFrame(
                     screen: _buildDemoScreen(

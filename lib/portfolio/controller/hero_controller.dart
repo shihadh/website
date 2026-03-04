@@ -11,11 +11,8 @@ class HeroController extends ChangeNotifier {
   Offset get mousePosition => _mousePosition;
 
   void triggerLoad() {
-    // 200ms intentional delay for cinematic entrance as requested by user
-    Future.delayed(const Duration(milliseconds: 200), () {
-      _isLoaded = true;
-      notifyListeners();
-    });
+    _isLoaded = true;
+    notifyListeners();
   }
 
   void updateScroll(double value) {

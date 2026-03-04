@@ -9,4 +9,6 @@ class AppConstants {
 
   static const double phoneAspectRatio = 9 / 19.5;
   static const double phoneBorderRadius = 40.0;
+  static const double tabletAspectRatio = 4 / 3;
+  static const double tabletBorderRadius = 32.0;
 }

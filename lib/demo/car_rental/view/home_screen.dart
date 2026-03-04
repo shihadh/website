@@ -8,15 +8,6 @@ class CarHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Mock brands data
-    final brands = [
-      'assets/images/brand1.png',
-      'assets/images/brand2.png',
-      'assets/images/brand3.png',
-      'assets/images/brand4.png',
-      'assets/images/brand5.png',
-    ];
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xFFF5F5F5),
@@ -162,13 +153,17 @@ class CarHomeScreen extends StatelessWidget {
 
               SizedBox(
                 height: 60,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  physics: const BouncingScrollPhysics(),
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  itemCount: brands.length,
-                  itemBuilder: (context, index) {
-                    return _BrandIcon(image: brands[index]);
+                child: Consumer<CarRentalProvider>(
+                  builder: (context, provider, child) {
+                    return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      physics: const BouncingScrollPhysics(),
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      itemCount: provider.brands.length,
+                      itemBuilder: (context, index) {
+                        return _BrandIcon(image: provider.brands[index]);
+                      },
+                    );
                   },
                 ),
               ),

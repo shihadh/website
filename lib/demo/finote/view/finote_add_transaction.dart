@@ -2,22 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shihad_portfolio/demo/finote/controller/finote_provider.dart';
 
-class FinoteAddTransactionScreen extends StatefulWidget {
+class FinoteAddTransactionScreen extends StatelessWidget {
   const FinoteAddTransactionScreen({super.key});
 
-  @override
-  State<FinoteAddTransactionScreen> createState() =>
-      _FinoteAddTransactionScreenState();
-}
-
-class _FinoteAddTransactionScreenState
-    extends State<FinoteAddTransactionScreen> {
-  final _amountController = TextEditingController();
-  final _noteController = TextEditingController();
-  String _selectedCategory = 'Select category';
-  bool _isIncome = true;
-
-  final List<String> _categories = [
+  final List<String> _categories = const [
     'Select category',
     'Food',
     'Shopping',
@@ -29,128 +17,135 @@ class _FinoteAddTransactionScreenState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 50),
-            // Header
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+    return Consumer<FinoteProvider>(
+      builder: (context, provider, _) {
+        return Scaffold(
+          backgroundColor: Colors.white,
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildHeaderIcon(Icons.smart_toy_outlined, context),
-                const SizedBox(width: 12),
-                _buildHeaderIcon(Icons.qr_code_scanner, context),
-                const SizedBox(width: 12),
-                _buildHeaderIcon(Icons.person_outline, context),
+                const SizedBox(height: 50),
+                // Header
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    _buildHeaderIcon(Icons.smart_toy_outlined, context),
+                    const SizedBox(width: 12),
+                    _buildHeaderIcon(Icons.qr_code_scanner, context),
+                    const SizedBox(width: 12),
+                    _buildHeaderIcon(Icons.person_outline, context),
+                  ],
+                ),
+                const SizedBox(height: 20),
+
+                _buildSectionLabel('Amount'),
+                const SizedBox(height: 8),
+                _buildTextField('₹ 0', controller: provider.amountController),
+
+                const SizedBox(height: 20),
+                _buildSectionLabel('Transaction Type'),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    Expanded(
+                      child: _buildTypeButton(
+                        '+ Income',
+                        provider.isIncome,
+                        Colors.green.withValues(alpha: 0.2),
+                        () => provider.setIncome(true),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: _buildTypeButton(
+                        '- Expense',
+                        !provider.isIncome,
+                        Colors.redAccent,
+                        () => provider.setIncome(false),
+                        isExpense: true,
+                      ),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 20),
+                _buildSectionLabel('Date'),
+                const SizedBox(height: 8),
+                _buildTextField(
+                  'DD-MM-YYYY',
+                  suffixIcon: Icons.calendar_today_outlined,
+                ),
+
+                const SizedBox(height: 20),
+                _buildSectionLabel('Category'),
+                const SizedBox(height: 8),
+                _buildDropdown(provider),
+
+                const SizedBox(height: 20),
+                Row(
+                  children: [
+                    _buildSectionLabel('Note'),
+                    const SizedBox(width: 4),
+                    const Text(
+                      '(Optional)',
+                      style: TextStyle(color: Colors.grey, fontSize: 13),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                _buildTextField(
+                  'Add a note about this transaction...',
+                  maxLines: 4,
+                  controller: provider.noteController,
+                ),
+
+                const SizedBox(height: 32),
+                SizedBox(
+                  width: double.infinity,
+                  height: 56,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (provider.amountController.text.isEmpty) return;
+                      final amount =
+                          double.tryParse(provider.amountController.text) ?? 0;
+                      provider.addTransaction({
+                        'title': provider.noteController.text.isNotEmpty
+                            ? provider.noteController.text
+                            : (provider.isIncome ? 'Income' : 'Expense'),
+                        'amount': provider.isIncome ? amount : -amount,
+                        'category':
+                            provider.selectedCategory == 'Select category'
+                            ? 'General'
+                            : provider.selectedCategory,
+                        'date': 'Today',
+                      });
+                      provider.setBottomNavIndex(0);
+                      provider.clearForm();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                    child: const Text(
+                      'Save Transaction',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 40),
               ],
             ),
-            const SizedBox(height: 20),
-
-            _buildSectionLabel('Amount'),
-            const SizedBox(height: 8),
-            _buildTextField('₹ 0', controller: _amountController),
-
-            const SizedBox(height: 20),
-            _buildSectionLabel('Transaction Type'),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                Expanded(
-                  child: _buildTypeButton(
-                    '+ Income',
-                    _isIncome,
-                    Colors.green.withValues(alpha: 0.2),
-                    () => setState(() => _isIncome = true),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: _buildTypeButton(
-                    '- Expense',
-                    !_isIncome,
-                    Colors.redAccent,
-                    () => setState(() => _isIncome = false),
-                    isExpense: true,
-                  ),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 20),
-            _buildSectionLabel('Date'),
-            const SizedBox(height: 8),
-            _buildTextField(
-              'DD-MM-YYYY',
-              suffixIcon: Icons.calendar_today_outlined,
-            ),
-
-            const SizedBox(height: 20),
-            _buildSectionLabel('Category'),
-            const SizedBox(height: 8),
-            _buildDropdown(),
-
-            const SizedBox(height: 20),
-            Row(
-              children: [
-                _buildSectionLabel('Note'),
-                const SizedBox(width: 4),
-                const Text(
-                  '(Optional)',
-                  style: TextStyle(color: Colors.grey, fontSize: 13),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            _buildTextField(
-              'Add a note about this transaction...',
-              maxLines: 4,
-              controller: _noteController,
-            ),
-
-            const SizedBox(height: 32),
-            SizedBox(
-              width: double.infinity,
-              height: 56,
-              child: ElevatedButton(
-                onPressed: () {
-                  if (_amountController.text.isEmpty) return;
-                  final amount = double.tryParse(_amountController.text) ?? 0;
-                  context.read<FinoteProvider>().addTransaction({
-                    'title': _noteController.text.isNotEmpty
-                        ? _noteController.text
-                        : (_isIncome ? 'Income' : 'Expense'),
-                    'amount': _isIncome ? amount : -amount,
-                    'category': _selectedCategory == 'Select category'
-                        ? 'General'
-                        : _selectedCategory,
-                    'date': 'Today',
-                  });
-                  context.read<FinoteProvider>().setBottomNavIndex(0);
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                ),
-                child: const Text(
-                  'Save Transaction',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 40),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
@@ -245,7 +240,7 @@ class _FinoteAddTransactionScreenState
     );
   }
 
-  Widget _buildDropdown() {
+  Widget _buildDropdown(FinoteProvider provider) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       decoration: BoxDecoration(
@@ -254,7 +249,7 @@ class _FinoteAddTransactionScreenState
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
-          value: _selectedCategory,
+          value: provider.selectedCategory,
           isExpanded: true,
           dropdownColor: Colors.white,
           icon: const Icon(Icons.arrow_drop_down, color: Colors.black54),
@@ -266,7 +261,7 @@ class _FinoteAddTransactionScreenState
                 ),
               )
               .toList(),
-          onChanged: (val) => setState(() => _selectedCategory = val!),
+          onChanged: (val) => provider.setCategory(val!),
         ),
       ),
     );

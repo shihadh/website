@@ -60,6 +60,14 @@ class CarRentalProvider extends ChangeNotifier {
     },
   ];
 
+  final List<String> brands = const [
+    AppAssets.brand1,
+    AppAssets.brand2,
+    AppAssets.brand3,
+    AppAssets.brand4,
+    AppAssets.brand5,
+  ];
+
   Map<String, dynamic>? _selectedCar;
   Map<String, dynamic>? get selectedCar => _selectedCar;
 

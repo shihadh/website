@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shihad_portfolio/core/responsive.dart';
 import 'package:shihad_portfolio/core/constants/link_constants.dart';
 import 'package:shihad_portfolio/core/constants/text_constants.dart';
+import 'package:shihad_portfolio/core/theme/app_theme.dart';
 import 'package:shihad_portfolio/core/utils/url_launcher_utils.dart';
 import 'package:shihad_portfolio/showcase/project_card.dart';
 import 'package:shihad_portfolio/demo/demo_provider.dart';
@@ -12,26 +14,36 @@ class ShowcaseSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = ResponsiveLayout.isMobile(context);
     final demoProvider = context.read<DemoProvider>();
 
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: ResponsiveLayout.isMobile(context) ? 24 : 100,
+        horizontal: isMobile ? 24 : 100,
         vertical: 100,
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             AppText.showcaseTitle,
-            style: Theme.of(context).textTheme.displayMedium,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.bebasNeue(
+              color: Colors.white,
+              fontSize: isMobile ? 48 : 80,
+            ),
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: isMobile ? 8 : 16),
           Text(
             AppText.showcaseSubtitle,
-            style: Theme.of(context).textTheme.bodyLarge,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.rockSalt(
+              color: AppTheme.accent,
+              fontSize: isMobile ? 14 : 24,
+            ),
           ),
-          const SizedBox(height: 60),
+          SizedBox(height: isMobile ? 40 : 60),
           _buildProjectGrid(context, demoProvider),
         ],
       ),

@@ -4,18 +4,8 @@ class PortfolioController extends ChangeNotifier {
   final ScrollController scrollController = ScrollController();
 
   final GlobalKey showcaseKey = GlobalKey();
+  final GlobalKey skillsKey = GlobalKey();
   final GlobalKey contactKey = GlobalKey();
-
-  double scrollOffset = 0.0;
-
-  PortfolioController() {
-    scrollController.addListener(_onScroll);
-  }
-
-  void _onScroll() {
-    scrollOffset = scrollController.offset;
-    notifyListeners();
-  }
 
   void scrollToWork() {
     if (showcaseKey.currentContext != null) {
@@ -39,7 +29,6 @@ class PortfolioController extends ChangeNotifier {
 
   @override
   void dispose() {
-    scrollController.removeListener(_onScroll);
     scrollController.dispose();
     super.dispose();
   }
