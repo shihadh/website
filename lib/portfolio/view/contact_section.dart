@@ -26,17 +26,17 @@ class ContactSection extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              AppText.contactTitle,
+              AppText.contact['title']!,
               style: GoogleFonts.kaushanScript(
                 color: AppTheme.accent,
                 fontSize: 50,
               ),
             ),
             const SizedBox(height: 16),
-            const Text(
-              AppText.contactSubtitle,
+            Text(
+              AppText.contact['subtitle']!,
               textAlign: TextAlign.center,
-              style: TextStyle(color: AppTheme.secondary, fontSize: 18),
+              style: const TextStyle(color: AppTheme.secondary, fontSize: 18),
             ),
             const SizedBox(height: 60),
             Wrap(
@@ -46,16 +46,16 @@ class ContactSection extends StatelessWidget {
               children: [
                 _ContactCard(
                   icon: Icons.email_outlined,
-                  label: AppText.contactEmailLabel,
+                  label: AppText.contact['emailLabel']!,
                   onTap: () async {
                     await Clipboard.setData(
                       const ClipboardData(text: AppLinks.email),
                     );
                     if (context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(AppText.contactEmailCopied),
-                          duration: Duration(seconds: 2),
+                        SnackBar(
+                          content: Text(AppText.contact['emailCopied']!),
+                          duration: const Duration(seconds: 2),
                           behavior: SnackBarBehavior.floating,
                         ),
                       );
@@ -66,12 +66,12 @@ class ContactSection extends StatelessWidget {
                 ),
                 _ContactCard(
                   icon: Icons.link,
-                  label: AppText.contactLinkedInLabel,
+                  label: AppText.contact['linkedInLabel']!,
                   onTap: () => UrlLauncherUtils.launchURL(AppLinks.linkedIn),
                 ),
                 _ContactCard(
                   icon: Icons.code,
-                  label: AppText.contactGithubLabel,
+                  label: AppText.contact['githubLabel']!,
                   onTap: () => UrlLauncherUtils.launchURL(AppLinks.github),
                 ),
                 _WhatsAppButton(
@@ -80,9 +80,9 @@ class ContactSection extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 80),
-            const Text(
-              AppText.contactCopyright,
-              style: TextStyle(color: AppTheme.secondary, fontSize: 14),
+            Text(
+              AppText.contact['copyright']!,
+              style: const TextStyle(color: AppTheme.secondary, fontSize: 14),
             ),
           ],
         ),
@@ -216,7 +216,7 @@ class _WhatsAppButton extends StatelessWidget {
                       ),
                       const SizedBox(height: 12),
                       Text(
-                        AppText.contactWhatsAppLabel,
+                        AppText.contact['whatsAppLabel']!,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,

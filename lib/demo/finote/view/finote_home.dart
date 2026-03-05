@@ -23,9 +23,9 @@ class FinoteHomeScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    AppText.finoteWelcome,
-                    style: TextStyle(
+                  Text(
+                    AppText.finote['welcome']!,
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
@@ -56,9 +56,12 @@ class FinoteHomeScreen extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          AppText.finoteTotalBalance,
-                          style: TextStyle(color: Colors.white60, fontSize: 16),
+                        Text(
+                          AppText.finote['totalBalance']!,
+                          style: const TextStyle(
+                            color: Colors.white60,
+                            fontSize: 16,
+                          ),
                         ),
                         const SizedBox(height: 8),
                         Text(
@@ -79,9 +82,12 @@ class FinoteHomeScreen extends StatelessWidget {
                             color: Colors.white.withValues(alpha: 0.2),
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: const Text(
-                            AppText.finoteThisMonth,
-                            style: TextStyle(color: Colors.white, fontSize: 12),
+                          child: Text(
+                            AppText.finote['thisMonth']!,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                            ),
                           ),
                         ),
                       ],
@@ -109,7 +115,7 @@ class FinoteHomeScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: _buildStatCard(
-                      label: AppText.finoteIncome,
+                      label: AppText.finote['income']!,
                       amount: '₹5,000',
                       icon: Icons.north_east,
                       iconColor: Colors.green,
@@ -119,7 +125,7 @@ class FinoteHomeScreen extends StatelessWidget {
                   const SizedBox(width: 16),
                   Expanded(
                     child: _buildStatCard(
-                      label: AppText.finoteExpense,
+                      label: AppText.finote['expense']!,
                       amount: '₹3,000',
                       icon: Icons.south_east,
                       iconColor: Colors.red,
@@ -141,9 +147,9 @@ class FinoteHomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      AppText.finoteIncomeVsExpense,
-                      style: TextStyle(
+                    Text(
+                      AppText.finote['incomeVsExpense']!,
+                      style: const TextStyle(
                         fontSize: 16,
                         color: Colors.grey,
                         fontWeight: FontWeight.w500,
@@ -194,9 +200,15 @@ class FinoteHomeScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        _buildLegendItem(Colors.green, AppText.finoteIncome),
+                        _buildLegendItem(
+                          Colors.green,
+                          AppText.finote['income']!,
+                        ),
                         const SizedBox(width: 24),
-                        _buildLegendItem(Colors.red, AppText.finoteExpense),
+                        _buildLegendItem(
+                          Colors.red,
+                          AppText.finote['expense']!,
+                        ),
                       ],
                     ),
                   ],
@@ -204,9 +216,9 @@ class FinoteHomeScreen extends StatelessWidget {
               ),
 
               const SizedBox(height: 24),
-              const Text(
-                AppText.finoteRecentTransactions,
-                style: TextStyle(
+              Text(
+                AppText.finote['recentTransactions']!,
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
@@ -299,7 +311,7 @@ class FinoteHomeScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
-              AppText.finoteThisMonth,
+              AppText.finote['thisMonth']!,
               style: TextStyle(
                 color: iconColor.withValues(alpha: 0.7),
                 fontSize: 11,

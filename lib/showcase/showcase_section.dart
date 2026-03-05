@@ -27,7 +27,7 @@ class ShowcaseSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            AppText.showcaseTitle,
+            AppText.showcase['title']!,
             textAlign: TextAlign.center,
             style: GoogleFonts.bebasNeue(
               color: Colors.white,
@@ -36,7 +36,7 @@ class ShowcaseSection extends StatelessWidget {
           ),
           SizedBox(height: isMobile ? 8 : 16),
           Text(
-            AppText.showcaseSubtitle,
+            AppText.showcase['subtitle']!,
             textAlign: TextAlign.center,
             style: GoogleFonts.rockSalt(
               color: AppTheme.accent,
@@ -53,8 +53,8 @@ class ShowcaseSection extends StatelessWidget {
   Widget _buildProjectGrid(BuildContext context, DemoProvider demoProvider) {
     final projects = [
       ProjectCard(
-        title: AppText.finoteTitle,
-        description: AppText.finoteDesc,
+        title: AppText.projectData['finoteTitle']!,
+        description: AppText.projectData['finoteDesc']!,
         tags: const ['Flutter', 'Firebase', 'AI-Integration', 'Provider'],
         isFeatured: true,
         onDemoPressed: () => demoProvider.openDemo(DemoType.finote),
@@ -63,8 +63,8 @@ class ShowcaseSection extends StatelessWidget {
         },
       ),
       ProjectCard(
-        title: AppText.carRentalTitle,
-        description: AppText.carRentalDesc,
+        title: AppText.projectData['carRentalTitle']!,
+        description: AppText.projectData['carRentalDesc']!,
         tags: const ['Flutter', 'Clean Architecture', 'Provider'],
         onDemoPressed: () => demoProvider.openDemo(DemoType.carRental),
         onGithubPressed: () {
@@ -72,8 +72,8 @@ class ShowcaseSection extends StatelessWidget {
         },
       ),
       ProjectCard(
-        title: AppText.gameVerseProjectTitle,
-        description: AppText.gameVerseDesc,
+        title: AppText.projectData['gameVerseProjectTitle']!,
+        description: AppText.projectData['gameVerseDesc']!,
         tags: const ['Flutter', 'REST API', 'GameDB', 'Provider'],
         onDemoPressed: () => demoProvider.openDemo(DemoType.gameVerse),
         onGithubPressed: () {
@@ -81,8 +81,8 @@ class ShowcaseSection extends StatelessWidget {
         },
       ),
       ProjectCard(
-        title: AppText.icmsTitle,
-        description: AppText.icmsDesc,
+        title: AppText.projectData['icmsTitle']!,
+        description: AppText.projectData['icmsDesc']!,
         tags: const ['Flutter', 'Enterprise', 'REST API', 'Provider'],
         isPrivate: true,
         onDemoPressed: () {},

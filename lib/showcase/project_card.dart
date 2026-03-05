@@ -82,8 +82,8 @@ class ProjectCard extends StatelessWidget {
                               color: AppTheme.accent,
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            child: const Text(
-                              AppText.projectFeaturedLabel,
+                            child: Text(
+                              AppText.projectCard['featuredLabel']!,
                               style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,
@@ -100,7 +100,7 @@ class ProjectCard extends StatelessWidget {
                         Text(
                           description,
                           style: Theme.of(context).textTheme.bodyLarge,
-                          maxLines: 3,
+                          maxLines: 4,
                           overflow: TextOverflow.ellipsis,
                         ),
                         const Spacer(),
@@ -116,15 +116,15 @@ class ProjectCard extends StatelessWidget {
                           children: [
                             if (!isPrivate)
                               _ActionButton(
-                                label: AppText.projectLiveDemo,
+                                label: AppText.projectCard['liveDemo']!,
                                 icon: Icons.play_arrow,
                                 onPressed: onDemoPressed,
                               ),
                             const SizedBox(width: 12),
                             _ActionButton(
                               label: isPrivate
-                                  ? AppText.projectPrivate
-                                  : AppText.projectGithub,
+                                  ? AppText.projectCard['private']!
+                                  : AppText.projectCard['github']!,
                               icon: isPrivate ? Icons.lock : Icons.code,
                               onPressed: isPrivate ? () {} : onGithubPressed,
                               isOutline: true,

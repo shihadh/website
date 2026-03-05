@@ -164,9 +164,9 @@ class CarDetailsScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        AppText.carDetailsOverview,
-                        style: TextStyle(
+                      Text(
+                        AppText.carRental['detailsOverview']!,
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
@@ -204,9 +204,9 @@ class CarDetailsScreen extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 32),
-                      const Text(
-                        AppText.carDetailsRenter,
-                        style: TextStyle(
+                      Text(
+                        AppText.carRental['detailsRenter']!,
+                        style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
@@ -271,7 +271,7 @@ class CarDetailsScreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      AppText.carDetailsPerDay,
+                      AppText.carRental['detailsPerDay']!,
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.grey.shade600,
@@ -292,9 +292,9 @@ class CarDetailsScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: const Text(
-                    AppText.carDetailsRentNow,
-                    style: TextStyle(
+                  child: Text(
+                    AppText.carRental['detailsRentNow']!,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),

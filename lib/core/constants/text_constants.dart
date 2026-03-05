@@ -1,119 +1,132 @@
 class AppText {
   // Hero Section
-  static const String heroName = 'MOHAMMED SHIHAD';
-  static const String heroBgText = 'FLUTTER\nENGINEER';
-  static const String heroTitleModern = ' Cross -';
-  static const String heroTitleArchitect = 'Platform';
-  static const String heroCreatedForYou = 'Developer for you.';
+  static const Map<String, String> hero = {
+    'name': 'MOHAMMED SHIHAD',
+    'bgText': 'FLUTTER\nENGINEER',
+    'titleModern': ' Cross -',
+    'titleArchitect': 'Platform',
+    'createdForYou': 'Developer for you.',
+    'phoneLabel': 'FLUTTER',
+  };
 
   // Side Info Cards
-  static const String sideCardPreOrdersTitle = 'MOHAMMED SHIHAD K';
-  static const String sideCardPreOrdersDesc =
-      'I build scalable Flutter applications using modern architecture patterns and AI-powered integrations.';
-  static const String sideCardExclusiveTitle = 'How I Work';
-  static const String sideCardExclusiveDesc =
-      'Clean and maintainable\nScalable state management\nPerformance-focused UI\nModular code structure';
-  static const String sideCardWatchPreview = 'WATCH PREVIEW';
-  static const String heroPhoneLabel = 'FLUTTER';
+  static const Map<String, String> sideCard = {
+    'title1': 'MOHAMMED SHIHAD K',
+    'desc1':
+        'I build scalable Flutter applications using modern architecture patterns and AI-powered integrations.',
+    'title2': 'How I Work',
+    'desc2':
+        'Clean and maintainable\nScalable state management\nPerformance-focused UI\nModular code structure',
+    'watchPreview': 'WATCH PREVIEW',
+  };
 
   // Skills Section
-  static const String skillsTitle = 'Technical Skills';
-  static const String mobileDevTitle = 'Mobile Development';
-  static const String mobileDevSkills = 'Flutter, Dart, Responsive UI';
-  static const String backendTitle = 'Backend & Authentication';
-  static const String backendSkills = 'Firebase, Supabase, REST APIs';
-  static const String architectureTitle = 'State Management & Architecture';
-  static const String architectureSkills =
-      'Provider, Clean modular structure, Scalable folder architecture';
-  static const String aiTitle = 'AI & Advanced Features';
-  static const String aiSkills =
-      'Google ML Kit (OCR integration), OpenAI API (Ai chat assistant)';
-  static const String toolsTitle = 'Tools & Workflow';
-  static const String toolsSkills =
-      'Git & GitHub, Postman, VS Code & Android Studio, Debugging & Performance optimization';
+  static const Map<String, String> skills = {
+    'title': 'Technical Skills',
+    'mobileDevTitle': 'Mobile Development',
+    'mobileDevSkills': 'Flutter, Dart, Responsive UI',
+    'backendTitle': 'Backend & Authentication',
+    'backendSkills': 'Firebase, Supabase, REST APIs',
+    'architectureTitle': 'State Management & Architecture',
+    'architectureSkills':
+        'Provider, Clean modular structure, Scalable folder architecture',
+    'aiTitle': 'AI & Advanced Features',
+    'aiSkills':
+        'Google ML Kit (OCR integration), OpenAI API (Ai chat assistant)',
+    'toolsTitle': 'Tools & Workflow',
+    'toolsSkills':
+        'Git & GitHub, Postman, VS Code & Android Studio, Debugging & Performance optimization',
+  };
 
   // Navigation Labels
-  static const String navHome = 'Home';
-  static const String navTransactions = 'Transactions';
-  static const String navHistory = 'History';
+  static const Map<String, String> nav = {
+    'home': 'Home',
+    'transactions': 'Transactions',
+    'history': 'History',
+  };
 
   // Demo Placeholders
-  static const String gameVerseTitle = 'GameVerse Demo';
+  static const Map<String, String> demo = {'gameVerseTitle': 'GameVerse Demo'};
 
   // Contact Section
-  static const String contactTitle = "Let's Connect";
-  static const String contactSubtitle =
-      "I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.";
-  static const String contactEmailLabel = 'Email';
-  static const String contactEmailCopied = 'Email copied to clipboard!';
-  static const String contactLinkedInLabel = 'LinkedIn';
-  static const String contactGithubLabel = 'GitHub';
-  static const String contactWhatsAppLabel = 'WhatsApp';
-  static const String contactCopyright =
-      '© 2026 Shihad. Built with Flutter Web.';
+  static const Map<String, String> contact = {
+    'title': "Let's Connect",
+    'subtitle':
+        "I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.",
+    'emailLabel': 'Email',
+    'emailCopied': 'Email copied to clipboard!',
+    'linkedInLabel': 'LinkedIn',
+    'githubLabel': 'GitHub',
+    'whatsAppLabel': 'WhatsApp',
+    'copyright': '© 2026 Shihad. Built with Flutter Web.',
+  };
 
   // Showcase Section
-  static const String showcaseTitle = 'Selected Projects';
-  static const String showcaseSubtitle =
-      'high-performance applications built with scalability and UX in mind.';
+  static const Map<String, String> showcase = {
+    'title': 'Selected Projects',
+    'subtitle':
+        'high-performance applications built with scalability and UX in mind.',
+  };
 
   // Project Card
-  static const String projectFeaturedLabel = 'Featured Project';
-  static const String projectLiveDemo = 'Live Demo';
-  static const String projectGithub = 'GitHub';
-  static const String projectPrivate = 'Private';
+  static const Map<String, String> projectCard = {
+    'featuredLabel': 'Featured Project',
+    'liveDemo': 'Live Demo',
+    'github': 'GitHub',
+    'private': 'Private',
+  };
 
   // Project Data (Hardcoded for now in Showcase but good to have here)
-  static const String finoteTitle = 'Finote';
-  static const String finoteDesc =
-      'AI-Powered Financial Management Application. firebase database and auth, OCR using MLKit, and AI Chat Assistant.';
-  static const String carRentalTitle = 'Car Rental App';
-  static const String carRentalDesc =
-      'Premium car booking experience with real-time availability and mock payment workflow.';
-  static const String gameVerseProjectTitle = 'GameVerse';
-  static const String gameVerseDesc =
-      'Cross-platform games discovery platform integrated with REST APIs and async state management.';
-  static const String icmsTitle = 'ICMS';
-  static const String icmsDesc =
-      'Enterprise Institute Management System. Faculty, Student, and Finance modules built for scale.';
+  static const Map<String, String> projectData = {
+    'finoteTitle': 'Finote',
+    'finoteDesc':
+        'AI-Powered Financial Management Application. firebase database and auth, OCR using MLKit, and AI Chat Assistant. Focused on designing intuitive, user-friendly interfaces accessible to all age groups.',
+    'carRentalTitle': 'Car Rental App',
+    'carRentalDesc':
+        'Premium car booking experience with real-time availability and mock payment workflow.',
+    'gameVerseProjectTitle': 'GameVerse',
+    'gameVerseDesc':
+        'Cross-platform games discovery platform integrated with REST APIs and async state management.',
+    'icmsTitle': 'ICMS',
+    'icmsDesc':
+        'Enterprise Institute Management System. Faculty, Student, and Finance modules built for scale.',
+  };
 
   // Car Rental Demo
-  static const String carIntroTitle = "Let's Start A New\nExperience";
-  static const String carIntroSubtitle =
-      "Choose your favourite car, rent it and enjoy new experience!";
-  static const String carIntroBtn = "Let's Start";
-
-  static const String carLoginTitle = "Drive Premium";
-  static const String carLoginSubtitle = "Your journey begins here.";
-  static const String carLoginEmailLabel = "EMAIL ADDRESS";
-  static const String carLoginPasswordLabel = "PASSWORD";
-  static const String carLoginForgot = "Forgot password?";
-  static const String carLoginBtn = "Log In";
-
-  static const String carHomeSearchHint = "Search car...";
-  static const String carHomeFindTitle = "Let’s find your favourite car here";
-  static const String carHomeTopBrands = "Top Brands";
-  static const String carHomeAvailableCars = "Available Cars";
-  static const String carHomeSeeAll = "See All";
-
-  static const String carDetailsOverview = "Overview";
-  static const String carDetailsRenter = "Renter";
-  static const String carDetailsRentNow = "Rent Now";
-  static const String carDetailsPerDay = "/Day";
+  static const Map<String, String> carRental = {
+    'introTitle': "Let's Start A New\nExperience",
+    'introSubtitle':
+        "Choose your favourite car, rent it and enjoy new experience!",
+    'introBtn': "Let's Start",
+    'loginTitle': "Drive Premium",
+    'loginSubtitle': "Your journey begins here.",
+    'loginEmailLabel': "EMAIL ADDRESS",
+    'loginPasswordLabel': "PASSWORD",
+    'loginForgot': "Forgot password?",
+    'loginBtn': "Log In",
+    'homeSearchHint': "Search car...",
+    'homeFindTitle': "Let’s find your favourite car here",
+    'homeTopBrands': "Top Brands",
+    'homeAvailableCars': "Available Cars",
+    'homeSeeAll': "See All",
+    'detailsOverview': "Overview",
+    'detailsRenter': "Renter",
+    'detailsRentNow': "Rent Now",
+    'detailsPerDay': "/Day",
+  };
 
   // Finote Demo
-  static const String finoteWelcome = "Welcome back!";
-  static const String finoteTotalBalance = "Total Balance";
-  static const String finoteThisMonth = "This month";
-  static const String finoteIncome = "Income";
-  static const String finoteExpense = "Expense";
-  static const String finoteIncomeVsExpense = "Income vs Expense";
-  static const String finoteRecentTransactions = "Recent Transactions";
-
-  static const String finoteHistoryTitle = "History";
-  static const String finoteHistorySearch = "Search transactions...";
-
-  static const String finoteAiAssistantTitle = "Finote AI";
-  static const String finoteAiAssistantHint =
-      "Ask me anything about your finances...";
+  static const Map<String, String> finote = {
+    'welcome': "Welcome back!",
+    'totalBalance': "Total Balance",
+    'thisMonth': "This month",
+    'income': "Income",
+    'expense': "Expense",
+    'incomeVsExpense': "Income vs Expense",
+    'recentTransactions': "Recent Transactions",
+    'historyTitle': "History",
+    'historySearch': "Search transactions...",
+    'aiAssistantTitle': "Finote AI",
+    'aiAssistantHint': "Ask me anything about your finances...",
+  };
 }

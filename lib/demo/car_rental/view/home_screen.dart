@@ -68,11 +68,14 @@ class CarHomeScreen extends StatelessWidget {
                 ),
               ),
 
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 20,
+                ),
                 child: Text(
-                  AppText.carHomeFindTitle,
-                  style: TextStyle(
+                  AppText.carRental['homeFindTitle']!,
+                  style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
@@ -88,7 +91,7 @@ class CarHomeScreen extends StatelessWidget {
                     Expanded(
                       child: TextField(
                         decoration: InputDecoration(
-                          hintText: AppText.carHomeSearchHint,
+                          hintText: AppText.carRental['homeSearchHint']!,
                           hintStyle: const TextStyle(
                             fontSize: 14,
                             color: Colors.grey,
@@ -132,9 +135,9 @@ class CarHomeScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      AppText.carHomeTopBrands,
-                      style: TextStyle(
+                    Text(
+                      AppText.carRental['homeTopBrands']!,
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
@@ -142,9 +145,12 @@ class CarHomeScreen extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {},
-                      child: const Text(
-                        AppText.carHomeSeeAll,
-                        style: TextStyle(color: Colors.grey, fontSize: 13),
+                      child: Text(
+                        AppText.carRental['homeSeeAll']!,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 13,
+                        ),
                       ),
                     ),
                   ],
@@ -174,9 +180,9 @@ class CarHomeScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      AppText.carHomeAvailableCars,
-                      style: TextStyle(
+                    Text(
+                      AppText.carRental['homeAvailableCars']!,
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
@@ -184,9 +190,12 @@ class CarHomeScreen extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {},
-                      child: const Text(
-                        AppText.carHomeSeeAll,
-                        style: TextStyle(color: Colors.grey, fontSize: 13),
+                      child: Text(
+                        AppText.carRental['homeSeeAll']!,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 13,
+                        ),
                       ),
                     ),
                   ],
@@ -302,9 +311,9 @@ class _CarCard extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
-                    const Text(
-                      AppText.carDetailsPerDay,
-                      style: TextStyle(color: Colors.grey),
+                    Text(
+                      AppText.carRental['detailsPerDay']!,
+                      style: const TextStyle(color: Colors.grey),
                     ),
                   ],
                 ),

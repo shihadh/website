@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -80,7 +79,7 @@ class SkillsSection extends StatelessWidget {
     return Column(
       children: [
         Text(
-          AppText.skillsTitle,
+          AppText.skills['title']!,
           textAlign: TextAlign.center,
           style: GoogleFonts.bebasNeue(
             color: Colors.white,

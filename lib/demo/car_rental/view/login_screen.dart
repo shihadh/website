@@ -48,16 +48,16 @@ class CarLoginScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        AppText.carLoginTitle,
-                        style: TextStyle(
+                      Text(
+                        AppText.carRental['loginTitle']!,
+                        style: const TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
                       Text(
-                        AppText.carLoginSubtitle,
+                        AppText.carRental['loginSubtitle']!,
                         style: TextStyle(
                           color: Colors.white.withValues(alpha: 0.8),
                           fontSize: 14,
@@ -78,9 +78,9 @@ class CarLoginScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    AppText.carLoginEmailLabel,
-                    style: TextStyle(
+                  Text(
+                    AppText.carRental['loginEmailLabel']!,
+                    style: const TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
                       color: Colors.grey,
@@ -109,9 +109,9 @@ class CarLoginScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const Text(
-                    AppText.carLoginPasswordLabel,
-                    style: TextStyle(
+                  Text(
+                    AppText.carRental['loginPasswordLabel']!,
+                    style: const TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
                       color: Colors.grey,
@@ -150,9 +150,12 @@ class CarLoginScreen extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: () {},
-                      child: const Text(
-                        AppText.carLoginForgot,
-                        style: TextStyle(color: Colors.black, fontSize: 12),
+                      child: Text(
+                        AppText.carRental['loginForgot']!,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
+                        ),
                       ),
                     ),
                   ),
@@ -169,9 +172,9 @@ class CarLoginScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      child: const Text(
-                        AppText.carLoginBtn,
-                        style: TextStyle(
+                      child: Text(
+                        AppText.carRental['loginBtn']!,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,

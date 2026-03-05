@@ -23,9 +23,9 @@ class FinoteHistoryScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      AppText.finoteHistoryTitle,
-                      style: TextStyle(
+                    Text(
+                      AppText.finote['historyTitle']!,
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,

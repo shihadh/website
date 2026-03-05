@@ -1,7 +1,9 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shihad_portfolio/core/responsive.dart';
+import 'package:shihad_portfolio/portfolio/controller/portfolio_controller.dart';
 import 'package:shihad_portfolio/portfolio/controller/hero_controller.dart'
     as hc;
 import 'package:shihad_portfolio/core/theme/app_theme.dart';
@@ -56,10 +58,10 @@ class _HeroSectionState extends State<HeroSection> {
           Positioned(
             bottom: isMobile ? 20 : 90,
             left: isMobile ? 20 : 80,
-            child: const RepaintBoundary(
+            child: RepaintBoundary(
               child: _SideInfoCard(
-                title: AppText.sideCardPreOrdersTitle,
-                description: AppText.sideCardPreOrdersDesc,
+                title: AppText.sideCard['title1']!,
+                description: AppText.sideCard['desc1']!,
               ),
             ),
           ),
@@ -68,10 +70,10 @@ class _HeroSectionState extends State<HeroSection> {
           Positioned(
             bottom: isMobile ? 20 : 90,
             right: isMobile ? 20 : 80,
-            child: const RepaintBoundary(
+            child: RepaintBoundary(
               child: _SideInfoCard(
-                title: AppText.sideCardExclusiveTitle,
-                description: AppText.sideCardExclusiveDesc,
+                title: AppText.sideCard['title2']!,
+                description: AppText.sideCard['desc2']!,
                 isProjectLink: true,
               ),
             ),
@@ -200,14 +202,14 @@ class _TypographyOverlay extends StatelessWidget {
                   : CrossAxisAlignment.end,
               children: [
                 _AnimatedTypographyUnit(
-                  text: AppText.heroTitleModern,
+                  text: AppText.hero['titleModern']!,
                   style: titleStyle,
                   delay: 200,
                   isLoaded: isLoaded,
                 ),
                 if (!isMobile) const SizedBox(height: 10),
                 _AnimatedTypographyUnit(
-                  text: AppText.heroCreatedForYou,
+                  text: AppText.hero['createdForYou']!,
                   style: subtitleStyle,
                   delay: 800,
                   isLoaded: isLoaded,
@@ -220,7 +222,7 @@ class _TypographyOverlay extends StatelessWidget {
 
             // Right Side Content
             _AnimatedTypographyUnit(
-              text: AppText.heroTitleArchitect,
+              text: AppText.hero['titleArchitect']!,
               style: titleStyle,
               delay: 400,
               isLoaded: isLoaded,
@@ -288,7 +290,7 @@ class _PhoneCenterpiece extends StatelessWidget {
                       ),
                       const SizedBox(height: 15),
                       Text(
-                        AppText.heroPhoneLabel,
+                        AppText.hero['phoneLabel']!,
                         style: GoogleFonts.bebasNeue(
                           color: Colors.white,
                           fontSize: 28,
@@ -343,45 +345,58 @@ class _SideInfoCard extends StatelessWidget {
           duration: const Duration(milliseconds: 2500),
           // Stagger the info cards to appear later
           curve: const Interval(0.6, 1.0, curve: Curves.easeOutExpo),
-          child: Container(
-            width: isMobile ? 160 : 260,
-            padding: EdgeInsets.all(isMobile ? 12 : 24),
-            decoration: BoxDecoration(
-              color: Color(0xFF1A1A1A).withValues(alpha: 0.4),
+          child: GestureDetector(
+            onTap: () {
+              if (isProjectLink) {
+                context.read<PortfolioController>().scrollToWork();
+              }
+            },
+            child: ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(
-                color: Colors.white.withValues(alpha: 0.08),
-                width: 0.8,
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title, style: titleStyle),
-                SizedBox(height: isMobile ? 4 : 10),
-                Text(description, style: descStyle),
-                if (isProjectLink) ...[
-                  const SizedBox(height: 24),
-                  Row(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+                child: Container(
+                  width: isMobile ? 160 : 260,
+                  padding: EdgeInsets.all(isMobile ? 12 : 24),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.05),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                      color: Colors.white.withValues(alpha: 0.15),
+                      width: 1.0,
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        AppText.sideCardWatchPreview,
-                        style: GoogleFonts.bebasNeue(
-                          color: Colors.white,
-                          fontSize: 14,
-                          letterSpacing: 1.5,
+                      Text(title, style: titleStyle),
+                      SizedBox(height: isMobile ? 4 : 10),
+                      Text(description, style: descStyle),
+                      if (isProjectLink) ...[
+                        const SizedBox(height: 24),
+                        Row(
+                          children: [
+                            Text(
+                              AppText.sideCard['watchPreview']!,
+                              style: GoogleFonts.bebasNeue(
+                                color: Colors.white,
+                                fontSize: 14,
+                                letterSpacing: 1.5,
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            const Icon(
+                              Icons.play_circle_outline,
+                              color: Colors.white,
+                              size: 16,
+                            ),
+                          ],
                         ),
-                      ),
-                      const SizedBox(width: 8),
-                      const Icon(
-                        Icons.play_circle_outline,
-                        color: Colors.white,
-                        size: 16,
-                      ),
+                      ],
                     ],
                   ),
-                ],
-              ],
+                ),
+              ),
             ),
           ),
         );

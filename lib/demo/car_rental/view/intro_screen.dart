@@ -29,9 +29,9 @@ class CarIntroScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  AppText.carIntroTitle,
-                  style: TextStyle(
+                Text(
+                  AppText.carRental['introTitle']!,
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -39,9 +39,9 @@ class CarIntroScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                const Text(
-                  AppText.carIntroSubtitle,
-                  style: TextStyle(color: Colors.grey, fontSize: 12),
+                Text(
+                  AppText.carRental['introSubtitle']!,
+                  style: const TextStyle(color: Colors.grey, fontSize: 12),
                 ),
                 const SizedBox(height: 40),
                 SizedBox(
@@ -57,9 +57,9 @@ class CarIntroScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(16),
                       ),
                     ),
-                    child: const Text(
-                      AppText.carIntroBtn,
-                      style: TextStyle(
+                    child: Text(
+                      AppText.carRental['introBtn']!,
+                      style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
                       ),

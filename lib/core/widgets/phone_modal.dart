@@ -98,7 +98,7 @@ class PhoneModal extends StatelessWidget {
       case DemoType.carRental:
         return _buildCarRentalFlow(carRentalProvider.carRentalScreenIndex);
       case DemoType.gameVerse:
-        return const _PlaceholderDemo(title: AppText.gameVerseTitle);
+        return _PlaceholderDemo(title: AppText.demo['gameVerseTitle']!);
       default:
         return const SizedBox.shrink();
     }
@@ -155,21 +155,21 @@ class PhoneModal extends StatelessWidget {
             fontSize: 12,
           ),
           unselectedLabelStyle: const TextStyle(fontSize: 12),
-          items: const [
+          items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
-              activeIcon: Icon(Icons.home),
-              label: AppText.navHome,
+              icon: const Icon(Icons.home_outlined),
+              activeIcon: const Icon(Icons.home),
+              label: AppText.nav['home']!,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.add_outlined),
-              activeIcon: Icon(Icons.add),
-              label: AppText.navTransactions,
+              icon: const Icon(Icons.add_outlined),
+              activeIcon: const Icon(Icons.add),
+              label: AppText.nav['transactions']!,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.receipt_long_outlined),
-              activeIcon: Icon(Icons.receipt_long),
-              label: AppText.navHistory,
+              icon: const Icon(Icons.receipt_long_outlined),
+              activeIcon: const Icon(Icons.receipt_long),
+              label: AppText.nav['history']!,
             ),
           ],
         ),
