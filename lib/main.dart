@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
+import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:provider/provider.dart';
 import 'package:shihad_portfolio/core/theme/app_theme.dart';
 import 'package:shihad_portfolio/portfolio/controller/portfolio_controller.dart';
@@ -7,10 +9,11 @@ import 'package:shihad_portfolio/portfolio/controller/hero_controller.dart'
 import 'package:shihad_portfolio/demo/car_rental/controller/car_rental_provider.dart';
 import 'package:shihad_portfolio/demo/finote/controller/finote_provider.dart';
 import 'package:shihad_portfolio/portfolio/controller/skills_controller.dart';
-import 'package:shihad_portfolio/portfolio/view/home_view.dart';
 import 'package:shihad_portfolio/demo/demo_provider.dart';
+import 'package:shihad_portfolio/core/routing/app_router.dart';
 
 void main() {
+  usePathUrlStrategy();
   runApp(
     MultiProvider(
       providers: [
@@ -31,11 +34,11 @@ class PortfolioApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Shihad | Flutter Engineer',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.darkTheme,
-      home: const HomeView(),
+      routerConfig: appRouter,
     );
   }
 }
